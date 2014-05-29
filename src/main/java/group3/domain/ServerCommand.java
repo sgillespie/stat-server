@@ -3,9 +3,11 @@ package group3.domain;
 public enum ServerCommand {
 	DATE_TIME("date"),
 	UPTIME("uptime"),
-	MEMORY_USAGE("???"),	// TODO[sgillespie]: look this up
+	NETSTAT("netstat -an"),
+	MEMORY_USAGE("free"),
 	CURRENT_USERS("who"),
 	RUNNING_PROCS("ps aux"),
+	QUIT(null)
 	;
 	
 	private final String systemCommand;

@@ -13,6 +13,7 @@ task runClient(type: JavaExec) {
     dependsOn classes
 
     main = 'group3.ClientMain'
+    args '127.0.0.1'
     classpath = sourceSets.main.output
 }
 
