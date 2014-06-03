@@ -1,15 +1,12 @@
 package group3;
 
 import group3.client.StatClient;
-import group3.client.StatClientImpl;
 import group3.domain.ClientConfig;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
 
 public class ClientMain {
-	
-	
 	public static void main(String[] args) throws IOException {
 		if (args.length < 1) {
 			usage();
@@ -19,7 +16,7 @@ public class ClientMain {
 		String ip = args[0];
 		
 		ClientConfig config = new ClientConfig(ip, 9000);
-		StatClient client = new StatClientImpl(config);
+		StatClient client = new StatClient(config);
 		try {
 			serverLoop(client);
 		} catch (UnknownHostException e) {
