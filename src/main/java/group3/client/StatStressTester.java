@@ -13,8 +13,8 @@ public class StatStressTester implements Runnable {
 	private List<Long> responseTimes = null;
 	
 	public static enum Load {
-		HEAVY("netstat"),
 		LIGHT("date"), 
+		HEAVY("netstat"),
 		;
 		
 		private final String command;
