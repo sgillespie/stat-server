@@ -38,6 +38,10 @@ The stresser will run "light" and then "heavy load" (date and netstat, respectiv
 starting with 1 thread, then 5, 10, 15, 20, 25, 30, 35, 40, 45, 50. It will print the
 results to standard output for each run.
 
+Documentation
+=============
+The docs directory contains results from stress testing (stress-test-results.xlsx), including graphs.
+
 Eclipse
 =======
 
