@@ -1,5 +1,8 @@
 package group3.domain;
 
+/**
+ * Enum representation of commands to run
+ */
 public enum ServerCommand {
 	DATE_TIME("date"),
 	UPTIME("uptime"),
@@ -7,7 +10,6 @@ public enum ServerCommand {
 	MEMORY_USAGE("free"),
 	CURRENT_USERS("who"),
 	RUNNING_PROCS("ps aux"),
-	QUIT(null)
 	;
 	
 	private final String systemCommand;

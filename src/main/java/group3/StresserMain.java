@@ -10,6 +10,7 @@ import java.util.List;
 
 public class StresserMain {
 	public static void main(String[] args) throws InterruptedException {
+		// Verify command line args
 		if (args.length < 1) {
 			usage();
 			System.exit(1);
@@ -17,8 +18,11 @@ public class StresserMain {
 		
 		String host = args[0];
 		Integer port = 9000;
+		
+		// Numbers of threads for each test
 		List<Integer> numberThreadsList = Arrays.asList(1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50);
 		
+		// Loop over the load types, and thread values and stress the server
 		ClientConfig config = new ClientConfig(host, port);
 		for (Load load : Load.values()) {
 			for (Integer numberThreads : numberThreadsList) {
@@ -45,6 +49,7 @@ public class StresserMain {
 					responseTimes.addAll(stresser.getResponseTimes());
 				}
 				
+				// Print the results
 				System.out.println(String.format("%s mean response time (%s threads): %s", 
 						load.toString().toLowerCase(), numberThreads, StatStressTester.mean(responseTimes)));
 			}

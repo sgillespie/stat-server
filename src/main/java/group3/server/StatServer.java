@@ -10,6 +10,9 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * Server class - serves connections (iterative)
+ */
 public class StatServer {
 	private ServerConfig config;
 	private ServerSocket serverSocket;
@@ -23,25 +26,30 @@ public class StatServer {
 				config.getPort()));
 		
 		try {
+			// Create the server socket
 			serverSocket = new ServerSocket(config.getPort());
 		    
 		    while (true) {
 		    	Socket clientSocket = null;
 		    	
 		    	try {
+		    		// Accept a client connection
 			    	clientSocket = serverSocket.accept();
 			    	System.out.println(String.format(
 			    			"Accepting a new connection from: %s", clientSocket.getInetAddress().getHostAddress()));
 			    	
+			    	// Open read/write streams from the client socket
 			    	PrintWriter out =
 				            new PrintWriter(clientSocket.getOutputStream(), true);
 				    BufferedReader in = new BufferedReader(
 				            new InputStreamReader(clientSocket.getInputStream()));
 				    
+				    // Read the input from the client
 				    String clientInput;
 				    while ((clientInput = in.readLine()) != null) {
 				    	System.out.println("Received message from " + clientSocket.getInetAddress().getHostAddress() + ": " + clientInput);
 				    	
+				    	// Lookup the command to run
 					    ServerCommand cmd = null;
 					    if ("uptime".equals(clientInput)) {
 					    	cmd = ServerCommand.UPTIME;
@@ -55,16 +63,9 @@ public class StatServer {
 					    	cmd = ServerCommand.CURRENT_USERS;
 					    } else if ("procs".equals(clientInput)) {
 					    	cmd = ServerCommand.RUNNING_PROCS;
-					    } else if ("quit".equals(clientInput)) {
-					    	cmd = ServerCommand.QUIT;
 					    }
 					    
-					    if (cmd == ServerCommand.QUIT) {
-					    	System.out.println("Disconnecting client " + clientSocket.getInetAddress().getHostAddress());
-					    	clientSocket.close();
-					    	break;
-					    }
-					    
+					    // Guard agains NullPointerExceptions
 					    if (cmd == null) {
 					    	System.err.println("Received a null request from " + clientSocket.getInetAddress().getHostAddress() + "!");
 					    	clientSocket.close();
@@ -72,10 +73,12 @@ public class StatServer {
 					    }
 					    
 					    try {
+					    	// Run the command
 					    	Process proc = Runtime.getRuntime().exec(cmd.getCommand());
 					    	int exitCode = proc.waitFor();
 					    	
 					    	if (exitCode == 0) {
+					    		// Send the results to the client
 					    		BufferedReader reader = 
 					    		         new BufferedReader(new InputStreamReader(proc.getInputStream()));
 					    		
@@ -92,6 +95,7 @@ public class StatServer {
 					    }
 				    }
 		    	} finally {
+		    		// Make sure the socket gets closed
 		    		if (clientSocket != null) clientSocket.close();
 		    	}
 		    }
@@ -104,6 +108,7 @@ public class StatServer {
 		System.out.println(String.format("Stopping stat server @ %s:%s", config.getHost(), 
 				config.getPort()));
 		
+		// Close the socket
 		if (serverSocket != null) {
 			serverSocket.close();
 		}

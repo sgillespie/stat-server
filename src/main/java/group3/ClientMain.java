@@ -6,8 +6,12 @@ import group3.domain.ClientConfig;
 import java.io.IOException;
 import java.net.UnknownHostException;
 
+/**
+ * Entry point for Client
+ */
 public class ClientMain {
 	public static void main(String[] args) throws IOException {
+		// Verify args
 		if (args.length < 1) {
 			usage();
 			System.exit(1);
@@ -18,7 +22,8 @@ public class ClientMain {
 		ClientConfig config = new ClientConfig(ip, 9000);
 		StatClient client = new StatClient(config);
 		try {
-			serverLoop(client);
+			// Run the menu loop
+			menuLoop(client);
 		} catch (UnknownHostException e) {
 			System.err.println("Invalid host: " + e.getMessage() + "!");
 			System.exit(1);
@@ -31,6 +36,9 @@ public class ClientMain {
 		}
 	}
 	
+	/**
+	 * Returns the menu as a string
+	 */
 	private static String prompt() {
 		StringBuffer prompt = new StringBuffer();
 		
@@ -45,22 +53,33 @@ public class ClientMain {
 		return prompt.toString();
 	}
 	
+	/**
+	 * Prints usage information 
+	 */
 	private static void usage() {
 		System.err.println("Error: invalid usage!");
 		System.err.println("Usage: group3.ClientMain <host>");
 	}
 	
-	private static void serverLoop(StatClient client) throws IOException {
+	/**
+	 * Print out the menu and take input from user
+	 */
+	private static void menuLoop(StatClient client) throws IOException {
 		while (true) {
+			// Print the menu
 			System.out.print(prompt());
+			
+			// Get the input
 			String userInput = System.console().readLine();
 			if (!userInput.matches("[1-7]")) {
 				System.err.println("Incorrect input! Enter a number between 1-7");
 				continue;
 			}
 			
+			// Connect to the client
 			client.connect();
 			
+			// Determine the message to send
 			Integer entry = Integer.parseInt(userInput);
 			String message = "";
 			switch(entry) {
@@ -91,9 +110,14 @@ public class ClientMain {
 					break;
 			}
 			
+			// Send the message to the server
 			String serverResponse = client.sendMessage(message);
+			
+			// Print the results
 			System.out.println("Sent message: " + message);
 			System.out.println("Got response: " + serverResponse);
+			
+			// Disconnect from the server
 			client.disconnect();
 		}
 	}
