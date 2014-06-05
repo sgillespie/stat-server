@@ -10,8 +10,12 @@ import java.util.List;
 
 public class StresserMain {
 	public static void main(String[] args) throws InterruptedException {
-		// TODO: CHANGME
-		String host = "127.0.0.1";
+		if (args.length < 1) {
+			usage();
+			System.exit(1);
+		}
+		
+		String host = args[0];
 		Integer port = 9000;
 		List<Integer> numberThreadsList = Arrays.asList(1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50);
 		
@@ -45,5 +49,10 @@ public class StresserMain {
 						load.toString().toLowerCase(), numberThreads, StatStressTester.mean(responseTimes)));
 			}
 		}
+	}
+	
+	private static void usage() {
+		System.err.println("Error: invalid usage!");
+		System.err.println("Usage: group3.ClientMain <host>");
 	}
 }
