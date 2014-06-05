@@ -17,10 +17,10 @@ Building and running
 
 2) Once built, you can run the server or client using the jar file:
 
-	java -jar build/lib/stat-server.jar group3.ServerMain
+	java -jar build/libs/stat-server.jar group3.ServerMain
    or
    
-	java -jar build/lib/stat-server.jar group3.ClientMain <host-ip>
+	java -jar build/libs/stat-server.jar group3.ClientMain <host-ip>
         
    If you do not specify a host-ip, the program will print an error message
    and exit.
@@ -29,7 +29,7 @@ Testing
 =======
 Once built, you can run the stress tester by using the jar file:
 
-	java -jar build/lib/stat-server.jar group3.StresserMain <host-ip>
+	java -jar build/libs/stat-server.jar group3.StresserMain <host-ip>
 	
 If you do not specify a host-ip, the program will print an error message
 and exit.
@@ -56,9 +56,7 @@ Then open up eclipse, and import the stat-server project
 Developing
 ==========
 
-The stat-server code is in src/main/java. Test directories exist also,
-in case you want to use JUnit to write tests (src/test/java).  
-
+The stat-server code is in src/main/java.
 A few notes on the organization of the project
 
  * The "Main" classes are all in the group3 package (ServerMain, ClientMain, StresserMain)
