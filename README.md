@@ -19,7 +19,7 @@ Building and running
 
 	java -jar build/lib/stat-server.jar group3.ServerMain
    or
-        java -jar build/lib/stat-server.jar group3.ClientMain <host-ip>
+	java -jar build/lib/stat-server.jar group3.ClientMain <host-ip>
         
    If you do not specify a host-ip, the program will print an error message
    and exit.
