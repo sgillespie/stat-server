@@ -25,6 +25,9 @@ Building and running
    If you do not specify a host-ip, the program will print an error message
    and exit.
         
+FOR YOUR CONVENIENCE, all java binaries are included in the build directory,
+including the packaged jar.
+
 Testing
 =======
 Once built, you can run the stress tester by using the jar file:
