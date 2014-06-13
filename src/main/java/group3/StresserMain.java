@@ -35,6 +35,9 @@ public class StresserMain {
 					
 					Thread thread = new Thread(tester);
 					threads.add(thread);
+				}
+				
+				for (Thread thread: threads) {
 					thread.start();
 				}
 				
