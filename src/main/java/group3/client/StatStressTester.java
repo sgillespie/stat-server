@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StatStressTester implements Runnable {
-	private static final Integer MAX_ITERATIONS = 100;
+	private static final Integer MAX_ITERATIONS = 500;
 	private ClientConfig config;
 	private Load load;
 	private List<Long> responseTimes = null;
