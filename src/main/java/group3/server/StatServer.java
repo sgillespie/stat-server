@@ -7,7 +7,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.ServerSocket;
 import java.net.Socket;
 
 public abstract class StatServer {
@@ -82,6 +81,8 @@ public abstract class StatServer {
 			    			out.println(line);
 			    		}
 			    		out.println();
+			    		
+			    		reader.close();
 			    		
 			    	} else {
 			    		System.err.println("Error running command: " + cmd.getCommand() + "!");
