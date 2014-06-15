@@ -83,7 +83,8 @@ public abstract class StatServer {
 			    		out.println();
 			    		
 			    		reader.close();
-			    		
+			    		proc.getOutputStream().close();
+			    		proc.getErrorStream().close();
 			    	} else {
 			    		System.err.println("Error running command: " + cmd.getCommand() + "!");
 			    	}
