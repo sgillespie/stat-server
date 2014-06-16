@@ -15,15 +15,19 @@ Building and running
 
 	gradlew.bat jar
 
-2) Once built, you can run the server or client using the jar file:
+2) Once build, you can run the servers or client using the jar file:
+2a) Run the server
 
-	java -jar build/libs/stat-server.jar group3.ServerMain
-   or
-   
+	java -jar build/libs/stat-server.jar group3.DistributedServerMain
+or
+	java -jar build/libs/stat-server.jar group3.IterativeServerMain
+
+2b) Run the client
+
 	java -jar build/libs/stat-server.jar group3.ClientMain <host-ip>
         
-   If you do not specify a host-ip, the program will print an error message
-   and exit.
+If you do not specify a host-ip, the program will print an error message
+and exit.
         
 FOR YOUR CONVENIENCE, all java binaries are included in the build directory,
 including the packaged jar.
