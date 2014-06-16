@@ -20,6 +20,7 @@ Building and running
 
 	java -jar build/libs/stat-server.jar group3.DistributedServerMain
 or
+
 	java -jar build/libs/stat-server.jar group3.IterativeServerMain
 
 2b) Run the client
