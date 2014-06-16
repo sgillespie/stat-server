@@ -16,6 +16,7 @@ Building and running
 	gradlew.bat jar
 
 2) Once build, you can run the servers or client using the jar file:
+
 2a) Run the server
 
 	java -jar build/libs/stat-server.jar group3.DistributedServerMain
